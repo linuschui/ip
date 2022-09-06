@@ -2,11 +2,16 @@ import Command.Command;
 import Duke.DukeException;
 import Duke.DukeUi;
 import Duke.Parser;
-import Duke.TaskList;
 import Duke.Storage;
+import Duke.TaskList;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
 import java.util.ArrayList;
 
-public class Duke {
+public class Duke extends Application {
 
     private Storage storage;
     private TaskList tasks;
@@ -23,6 +28,8 @@ public class Duke {
             tasks = new TaskList(new ArrayList<>());
         }
     }
+
+    public Duke() {}
 
     public void run() {
         ui.showWelcome();
@@ -48,5 +55,14 @@ public class Duke {
 
     public static void main(String[] args) {
         new Duke("./data/tasks.txt").run();
+    }
+
+    @Override
+    public void start(Stage stage) {
+        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
+        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
+
+        stage.setScene(scene); // Setting the stage to show our screen
+        stage.show(); // Render the stage.
     }
 }
